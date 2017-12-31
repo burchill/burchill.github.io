@@ -64,7 +64,7 @@ disqus:           false
 shortname:        zachburchill # TO-DO: get a disqus account and change this
 
 # Social Media
-twitter:          true # add a twitter button to each post
+twitter:          false # add a twitter button to each post
 facebook:         false # add a facebook share button to each post
 
 author:
