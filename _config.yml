@@ -1,5 +1,5 @@
 # general configuration
-url: http://www.zachburchill.ml
+url: http://andburch.github.io
 baseurl: ''
 
 sass:
@@ -10,9 +10,9 @@ compass:
   # an avatar or logo (optional)
   logo: "/images/pawpaw.png"
   # author will appear under the avatar (optional)
-  author: "Zachary Burchill"
+  author: "Andrew Burchill"
   # tagline will appear under the title (optional)
-  tagline: "Data dabbler, cognitive scientist, and Hadley Wickham aficionado"
+  tagline: "Myrmecologist, collective behaviorist, and aspiring engineering ambassador.  <em>#undisciplined</em> "
   # if include_content is true, the contents of the content.html include will be
   # added right above the generated item list, if present
   include_content: true
@@ -64,14 +64,14 @@ disqus:           true
 shortname:        zachburchill # TO-DO: get a disqus account and change this
 
 # Social Media
-twitter:          false # add a twitter button to each post
+twitter:          true # add a twitter button to each post
 facebook:         false # add a facebook share button to each post
 
 author:
-  name:           'Zachary Burchill'
-  url:            https://zachburchill.ml
+  name:           'Andrew Burchill'
+  url:            https://andburch.github.io
 
 github:
-  repo:           https://github.com/burchill
+  repo:           https://github.com/andburch
   
 
