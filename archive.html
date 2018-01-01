@@ -6,20 +6,19 @@ permalink: /archive.html
 
 <section id="archive">
   <h3>This year's posts</h3>
-  {% for shared in site.shared %}
+  {% for post in site.posts %}
     {% unless shared.next %}
       <ul class="this">
     {% else %}
-      {% capture year %}{{ shared.date | date: '%Y' }}{% endcapture %}
-      {% capture nyear %}{{ shared.next.date | date: '%Y' }}{% endcapture %}
+      {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+      {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
       {% if year != nyear %}
         </ul>
-        <h3>{{ shared.date | date: '%Y' }}</h3>
+        <h3>{{ post.date | date: '%Y' }}</h3>
         <ul class="past">
       {% endif %}
     {% endunless %}
-      <li><time>{{ shared.date | date:"%d %b" }}: </time><a class = "post-title" href="{{ site.baseurl }}{{ shared.url  }}">{{ shared.title }}</a></li>
+      <li><time>{{ post.date | date:"%d %b" }}: </time><a class = "post-title" href="{{ post.baseurl }}{{ post.url  }}">{{ post.title }}</a></li>
   {% endfor %}
   </ul>
-  {{ site.shared }} dddddddddddddddddddddddddddddddd {{ site.posts  }}
 </section>
