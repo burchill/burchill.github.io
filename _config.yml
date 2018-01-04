@@ -12,7 +12,7 @@ compass:
   # author will appear under the avatar (optional)
   author: "Andrew Burchill"
   # tagline will appear under the title (optional)
-  tagline: "Myrmecologist, collective behaviorist, and aspiring engineering ambassador.  #undisciplined "
+  tagline: "Myrmecologist, collective behaviorist, and aspiring bio-engineer.  #undisciplined "
   # if include_content is true, the contents of the content.html include will be
   # added right above the generated item list, if present
   include_content: true
