@@ -1,30 +1,29 @@
-<p>Andrew Burchill is currently working on his Ph.D. in <b>Collective Animal Behavior</b> with Arizona State University's Social Insect Research Group.</p>
-
 <h2>My 'Thang':</h2>
 <label for="element-toggle">
   <p class="tooltip"><em>Ants.</em> Anything with ants. Evolution, physiology, but especially behavior. Also things that <em>aren't</em> ants but remind me of ants?  This includes swarm dynamics, decentralized optimization problems, and optimal foraging theory.</p>
 </label>
 <input id="element-toggle" type="checkbox" checked />
 <p id="toggled-element">My research right now is focused on how ant colonies do family meal-planning. Just a few workers do the "grocery shopping" for the <em>entire</em> 200+ member colony: how do they coordinate their foraging without language or any central authority? </p>
-
 <style>
   label[for=element-toggle] {
   cursor: pointer;
 }
   
 #element-toggle {
-  display: none; 
+  display: none;
+   
 }
 #toggled-element {
-  transition: opacity 1s;
-  font-size: 0pt;
-  opacity: 50%;
+transition-duration: .9s;
+    transition-property: font-size, opacity;
+    font-size: 0pt;
+    opacity: 0;
     }
 #element-toggle:not(:checked) ~ #toggled-element {
   font-size: 20pt;
-  opacity: 75%;
-  color: red;
+  opacity: 1;
 }
+  
   
 </style>
 <hr />
