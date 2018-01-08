@@ -28,6 +28,8 @@
     top: 110%;
     left: 0%;
     margin-left: 0px;
+  transition-duration: 0.3s;
+    transition-property: transform;
 }
 
 .tooltip .tooltiptext::after {
@@ -43,6 +45,7 @@
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+  transform: scale(1.1);
 }
 </style>
 <p class="tooltip">Ants. Anything with ants. Evolution, physiology, but especially behavior. Also things that aren't ants but remind me of ants? This includes swarm dynamics, decentralized optimization problems, and optimal foraging theory.
