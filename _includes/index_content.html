@@ -13,7 +13,7 @@
   
 #element-toggle {
   display: none;
-   transition-duration: 0.3s;
+   transition-duration: 3s;
     transition-property: transform;
 }
 #element-toggle:not(:checked) ~ #toggled-element {
@@ -22,52 +22,7 @@
   #element-toggle:checked ~ #toggled-element {
   transform: scale(1.1);
 }
-  
-  
-.tooltip {
-   
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 100%;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    
-    /* Position the tooltip */
-    position: static;
-    z-index: 1;
-    top: 110%;
-    left: 0%;
-    margin-left: 0px;
-  transition-duration: 0.3s;
-    transition-property: transform;
-}
-
-.tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    bottom: 100%;  /* At the top of the tooltip */
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent transparent black transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-  transform: scale(1.1);
-}
-  
-</style>
-<p class="tooltip">Ants. Anything with ants. Evolution, physiology, but especially behavior. Also things that aren't ants but remind me of ants? This includes swarm dynamics, decentralized optimization problems, and optimal foraging theory.
-<div></div>
-  <span class="tooltiptext">My research right now is focused on how ant colonies do family meal-planning. Just a few workers do the "grocery shopping" for the entire 200+ member colony: how do they coordinate their foraging without language or any central authority?</span>
-</p>
+</style
 <hr />
 
 <ul class="fa-ul main-list">
