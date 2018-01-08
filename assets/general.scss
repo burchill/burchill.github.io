@@ -8,15 +8,7 @@
 @import 'blog_head_container';
 
 /*** THINGS ANDREW ADDED ***/
-label[for=element-toggle] {
-  cursor: pointer;
-}
-#element-toggle {
-  display: none;
-}
-#element-toggle:not(:checked) ~ #toggled-element {
-  display: none;
-}
+
 
 /*** THINGS ANDREW ADDED ***/
 
