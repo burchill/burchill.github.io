@@ -47,13 +47,13 @@ label[for=pubs-toggle] {
 #pubs-toggle {
   display: none; 
   }
-#pub-options {
+#pubs {
   transition-duration: .7s;
   transition-property: height, opacity;
   height: 0pt;
   opacity: 0;
   }
-#pubs-toggle:not(:checked) ~ #pub-options {
+#pubs-toggle:not(:checked) ~ #pubs {
   height: 100%;
   opacity: 1;
   }  
@@ -67,7 +67,7 @@ label[for=pubs-toggle] {
     </label>
     <input id="pubs-toggle" type="checkbox" checked />
 
-    <div id="pubs-options" class="eqi-container" style="margin: 0 25%"> gfdgdgfsdgfdg
+    <div id="pubs" class="eqi-container" style="margin: 0 25%"> gfdgdgfsdgfdg
         <div><a href="https://github.com/andburch/"><span class="fa fa-flask fa-lg main-list-item-icon" style="width: 36px;	color: $text-color;"></span></a></div>
         <div><a href="https://www.linkedin.com/in/andrew-burchill-ab21b479/"><span class="fa fa-flask fa-lg main-list-item-icon"></span></a></div> 
         <div><a href="https://twitter.com/AndrewBurchill/"><span class="fa fa-flask fa-lg main-list-item-icon"></span></a></div>
