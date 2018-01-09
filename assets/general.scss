@@ -9,10 +9,6 @@
 
 /*** THINGS ANDREW ADDED ***/
 
-.fake-anchor {
-	color: $anchor-text-color;
-	text-decoration: none;
-}
 
 /*** THINGS ANDREW ADDED ***/
 
@@ -28,6 +24,7 @@ main {
 }
 
 /*** anchor tags ***/
+a,
 a:link,
 a:visited,
 a:hover,
