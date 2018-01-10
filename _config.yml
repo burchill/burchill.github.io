@@ -1,3 +1,9 @@
+#ANDREW ADDED
+gems:
+  - jekyll-postfiles
+
+#ANDREW ADDED
+
 # general configuration
 url: http://andburch.github.io
 baseurl: ''
