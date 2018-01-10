@@ -37,7 +37,7 @@ kramdown:
 highlighter: rouge
 
 # Permalinks
-permalink: pretty
+permalink: /:year/:month/:day/:title/
 
 # Hyde stuff
 #baseurl: "/" # If you are making a gh-pages project blog, this is
