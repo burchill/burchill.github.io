@@ -1,6 +1,9 @@
 #ANDREW ADDED
 gems:
   - jekyll-postfiles
+  
+plugins:
+  - jekyll-sitemap
 
 #ANDREW ADDED
 
