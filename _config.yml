@@ -10,6 +10,8 @@ plugins:
 whitelist:
   - jekyll-sitemap
   
+include: ["_posts"]
+  
 #ANDREW ADDED
 
 # general configuration
