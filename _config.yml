@@ -1,10 +1,15 @@
 #ANDREW ADDED
 gems:
   - jekyll-postfiles
+  - jekyll-sitemap
   
 plugins:
   - jekyll-sitemap
-
+  
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-sitemap
+  
 #ANDREW ADDED
 
 # general configuration
