@@ -38,6 +38,7 @@ compass:
   include_analytics: true
 
 # Exclude non-site files:
+include: ["_posts"]
 exclude: ["CNAME", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "anne_pro_macros.xlsx", "notes.txt"]
 
 # Dependencies
@@ -63,9 +64,13 @@ links:
   about_me:           /about/
   blog:            /blog/
   cv:            /cv.pdf
+
+
+
   pubs_google:            https://scholar.google.com/citations?user=zbe4q7YAAAAJ
   pubs_orcid:            https://orcid.org/0000-0002-4197-6689
   pubs_researchgate:            https://www.researchgate.net/profile/Andrew_Burchill
+
   home: "/"
 
 # Other stuff

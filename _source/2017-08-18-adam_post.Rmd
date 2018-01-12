@@ -35,10 +35,10 @@ I love the look, but I sometimes feel that this aesthetic has a somewhat limited
 
 **ADAM** is a Neoclassical split ortholinear porcelain keyboard. Those words have probably never been arranged next to each other in the history of the universe, but here we are. As mechanical keyboards become luxury goods, **ADAM** harkens back to a time when "fancy" didn't mean "minimalist," and ornamentation reigned supreme.
 
-![Celadon green with white stand-in caps from the front.]({{ site.url }}/images/adam_ic/white_keys_front_lol.png)
+![Celadon green with white stand-in caps from the front.]({{ site.url }}/_posts/figures/static_files/adam_ic/white_keys_front_lol.png)
 <p class = "figcaption">NOTE: all the images here are just renders of the left-hand halves, not photos. The pictured keycaps are <em>not</em> part of my design and have only been added in (poorly) to help depict what the end product might look like with caps.</p>
 
-![Celadon green with white stand-in caps from the front.]({{ site.url }}/images/adam_ic/white_keys_side_lol.png)
+![Celadon green with white stand-in caps from the front.]({{ site.url }}/_posts/figures/static_files/adam_ic/white_keys_side_lol.png)
 
 <p class = "figcaption">Another view from the side. From here on out, I'll stop the hokey photoshops and keep the stand-in keys and the keyboard body the same color. </p>
 
@@ -46,7 +46,7 @@ I love the look, but I sometimes feel that this aesthetic has a somewhat limited
 
 The name **ADAM** is doubly fitting: it is a reference to both the Biblical Adam, as it's the first of its kind, and the Adam brothers who created the style of architecture that inspired it ([known as "Adam style" or "Adamesque"](http://en.wikipedia.org/wiki/Adam_style)).
 
-![Gloss white with stand-in caps, viewed from the front.]({{ site.url }}/images/adam_ic/white_keys_front.png)
+![Gloss white with stand-in caps, viewed from the front.]({{ site.url }}/_posts/figures/static_files/adam_ic/white_keys_front.png)
 
 <p class = "figcaption">I'm currently working on two colors of glazes: Celadon green and gloss white. Early prototypes will be in Celadon green, as it highlights the features better than gloss white, and is easier to work with in terms of consistency/pooling.  Ignore the cutoff text in the bottom left corner--these were rendered online, so all I have are screenshots.</p>
 
@@ -54,19 +54,19 @@ The fact that Adam style incorporates simplified Rococo and Baroque elements wor
 
 The front of the keyboard features a cartouche surrounded by paneling. I actually drew the bolection profile for the paneling to imitate one actually used at the Palace of Versailles, but sadly the detail is too fine to make out in the finished product.
 
-![Celadon green without the stand-in caps, viewed from the front.]({{ site.url }}/images/adam_ic/green_nokeys_front.png)
+![Celadon green without the stand-in caps, viewed from the front.]({{ site.url }}/_posts/figures/static_files/adam_ic/green_nokeys_front.png)
 
 <p class = "figcaption">This is what will actually be printed for the Let's Split PCB version. (The hand-wired version will probably have a further ledge below for mounting the chip/batteries/etc.) The plate will be mounted on the ledges (one of which you can see from this angle), leaving the underside open for access and LEDs.</p>
 
 The sides of the keyboard are decorated with simplified [festoons](http://en.wikipedia.org/wiki/Festoon). Festoons are characteristic of the Adam style, and keep the sides interesting while not distracting (also, festoons are sometimes called *swag*, which is pretty funny). I might test how adding more detail to festoons looks, but the smoothness is growing on me.
 
-![Celadon green without the stand-in caps, viewed from the side]({{ site.url }}/images/adam_ic/green_nokeys_side2.png)
+![Celadon green without the stand-in caps, viewed from the side]({{ site.url }}/_posts/figures/static_files/adam_ic/green_nokeys_side2.png)
 
 <p class = "figcaption">A side view of what will actually be printed for the PCB version, demonstrating the festoons.</p>
 
 The rear has two holes for the MicroUSB cable and TRRS jack, and sports the classic Greek urn---an object prevalent in the Adam brothers' work. The renders on this page are from a version designed to accommodate /u/wootpatoot's [Let's Split v2 PCB](https://github.com/climbalima/let-s-Split-v2). 
 
-![Celadon green with stand-in caps, viewed from the back.]({{ site.url }}/images/adam_ic/green_keys_back_close.png)
+![Celadon green with stand-in caps, viewed from the back.]({{ site.url }}/_posts/figures/static_files/adam_ic/green_keys_back_close.png)
 
 <p class = "figcaption">A view of the back design for the PCB version, with the festoons that I'm considering removing. Again, the keycaps are not going to be printed. Notice the slight asymmetry.</p>
 
@@ -92,11 +92,11 @@ The 3D printing process for porcelain (at least for the time being) means that e
 
 I currently have a (somewhat coarse) relief of [Robert Adam](https://en.wikipedia.org/wiki/Robert_Adam) as a profile to commemorate his contribution. I _wanted_ to pair that with this relief of [Christopher Latham Sholes](http://www.wisconsinhistoricalmarkers.com/2015/07/christopher-latham-sholes-1819-1890.html), the inventor of the typewriter (and QWERTY), but I haven't found anybody near Milwaukee willing to go out there and take pictures for me.
 
-![Front of the version with the profile of Robert Adam]({{ site.url }}/images/adam_ic/green_keys_face_front.png)
+![Front of the version with the profile of Robert Adam]({{ site.url }}/_posts/figures/static_files/adam_ic/green_keys_face_front.png)
 
 <p class = "figcaption">A version with Robert Adam's profile in the cartouche. A better scan could help the details somewhat, but only to a limited extent.</p>
 
-![Front of the version with the profile of Robert Adam, from a different angle]({{ site.url }}/images/adam_ic/green_keys_face_front2.png)
+![Front of the version with the profile of Robert Adam, from a different angle]({{ site.url }}/_posts/figures/static_files/adam_ic/green_keys_face_front2.png)
 
 <p class = "figcaption">A different angle of a version with Robert Adam in bas-relief.</p>
 
@@ -104,11 +104,11 @@ I currently have a (somewhat coarse) relief of [Robert Adam](https://en.wikipedi
 
 Another characteristic of Adam style is the use of Roman/Greek statues. I toyed with the idea of including deep-relief statues, but ultimately abandoned it when I was soliciting early feedback.  People thought they were too gaudy/too hard to make out.  They still have a soft spot in my heart, so I thought I would show them off anyway.
 
-![Ganymede feeding Zeus in the form of an eagle.]({{ site.url }}/images/adam_ic/ganymede.png)
+![Ganymede feeding Zeus in the form of an eagle.]({{ site.url }}/_posts/figures/static_files/adam_ic/ganymede.png)
 
 <p class = "figcaption">Testing out a statue of Ganymede feeding Zeus in the form of an eagle, and other stuff I was tinkering with.</p>
 
-![A bust of Joan of Arc.]({{ site.url }}/images/adam_ic/joan.png)
+![A bust of Joan of Arc.]({{ site.url }}/_posts/figures/static_files/adam_ic/joan.png)
 
 <p class = "figcaption">Testing out a bust of Joan of Arc.  People complained about the blobbiness and the awkwardly glazed boobies.</p>
 

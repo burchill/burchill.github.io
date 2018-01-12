@@ -13,7 +13,23 @@
 
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/normalize.css">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/nav.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/general.css">
+  
+  {% comment %}  This section loads the variables for the different styles {% endcomment %}
+  {% comment %}  Checks all pages for the first one with type 'burchilldata' {% endcomment %}
+  {% assign data_file = site.pages | where: "type", "burchilldata" | first %}
+  {% if data_file and page.author and data_file.cognomen[page.author] %}
+    {% assign post_author_name = data_file.cognomen[page.author] %}
+    {% assign post_author_url = data_file.authorlinks[post_author_name] %}
+    {% assign post_author_css = data_file.authorstyles[post_author_name] %}
+    {% if post_author_css %}
+      <link rel="stylesheet" href="{{ site.baseurl }}/assets/{{ post_author_css }}">
+    {% else %} 
+      <link rel="stylesheet" href="{{ site.baseurl }}/assets/default_style.css">
+    {% endif %}
+  {% else %}
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/default_style.css">
+  {% endif %} 
+  
   {% if page.url == "/" %}
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/index.css">
   {% else %}

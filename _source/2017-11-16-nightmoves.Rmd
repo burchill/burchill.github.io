@@ -177,7 +177,7 @@ When it cuts back to her face, she now looks upset and sad. This is followed by 
 
 Even the understated question, "Ain't it funny how the night moves?" feels perfectly at home in a Ozu movie.  Many of his films end with an older man alone in his house at night, reflecting on the past and considering the lonely years that lie ahead. The protagonist of one of his best works, _An Autumn Afternoon_, after having married off his only daughter in a situation similar to that in _Late Spring_, sits by himself in the middle of the night, humming a song from his younger days (notice any similarities?). The last words he speaks before the film ends are "Alone, eh?"  Loaded, simple, but heavy with meaning.  
 
-![Chishū Ryū, as Shūhei Hirayama in Ozu's <em>An Autumn Afternoon</em>, alone after marrying off his only daughter]({{ site.url }}/images/nightmoves/autumn_afternoon.png){:width="400px"}
+![Chishū Ryū, as Shūhei Hirayama in Ozu's <em>An Autumn Afternoon</em>, alone after marrying off his only daughter]({{ site.url }}/_posts/figures/static_files/nightmoves/autumn_afternoon.png){:width="400px"}
 
 <p class = "figcaption">Chishū Ryū, as Shūhei Hirayama in Ozu's <em>An Autumn Afternoon</em>, alone after marrying off his only daughter.</p>
 
