@@ -1,5 +1,21 @@
+#ANDREW ADDED
+gems:
+  - jekyll-postfiles
+  - jekyll-sitemap
+  
+plugins:
+  - jekyll-sitemap
+  
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-sitemap
+  
+include: ["_posts"]
+  
+#ANDREW ADDED
+
 # general configuration
-url: http://www.zachburchill.ml
+url: http://andburch.github.io
 baseurl: ''
 
 sass:
@@ -10,9 +26,9 @@ compass:
   # an avatar or logo (optional)
   logo: "/images/pawpaw.png"
   # author will appear under the avatar (optional)
-  author: "Zachary Burchill"
+  author: "Andrew Burchill"
   # tagline will appear under the title (optional)
-  tagline: "Data dabbler, cognitive scientist, and Hadley Wickham aficionado"
+  tagline: "Myrmecologist, collective behaviorist, and wanna-be engineer.  #undisciplined "
   # if include_content is true, the contents of the content.html include will be
   # added right above the generated item list, if present
   include_content: true
@@ -32,7 +48,7 @@ kramdown:
 highlighter: rouge
 
 # Permalinks
-permalink: pretty
+permalink: /:year/:month/:day/:title/
 
 # Hyde stuff
 #baseurl: "/" # If you are making a gh-pages project blog, this is
@@ -48,11 +64,17 @@ links:
   about_me:           /about/
   blog:            /blog/
   cv:            /cv.pdf
-  publications:           /about/#research
+
+
+
+  pubs_google:            https://scholar.google.com/citations?user=zbe4q7YAAAAJ
+  pubs_orcid:            https://orcid.org/0000-0002-4197-6689
+  pubs_researchgate:            https://www.researchgate.net/profile/Andrew_Burchill
+
   home: "/"
 
 # Other stuff
-facepic: /images/zburchill.jpg
+facepic: /images/andrewmacho.jpg
                                 
 
 # set limit on number of post to appear on Home page
@@ -61,18 +83,18 @@ homepostlimit: 4
 excerpt_separator: <!--more-->  # you can specify your own separator, of course.
 
 # Disqus comments:
-disqus:           true
+disqus:           false
 shortname:        zachburchill # TO-DO: get a disqus account and change this
 
 # Social Media
-twitter:          false # add a twitter button to each post
-facebook:         false # add a facebook share button to each post
+twitter:          true # add a twitter button to each post
+facebook:         true # add a facebook share button to each post
 
 author:
-  name:           'Zachary Burchill'
-  url:            https://zachburchill.ml
+  name:           'Andrew Burchill'
+  url:            https://andburch.github.io
 
 github:
-  repo:           https://github.com/burchill
+  repo:           https://github.com/andburch
   
 

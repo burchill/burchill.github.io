@@ -4,6 +4,11 @@
 @import 'knitr-hyde_custom';
 @import 'blog_head_container';
 
+/*** THINGS ANDREW ADDED ***/
+
+
+/*** THINGS ANDREW ADDED ***/
+
 body {
 	font-family: 'Vollkorn', serif;
 	color: $text-color;
@@ -16,6 +21,7 @@ main {
 }
 
 /*** anchor tags ***/
+a,
 a:link,
 a:visited,
 a:hover,

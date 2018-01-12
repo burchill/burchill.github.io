@@ -1,8 +1,29 @@
-<p>Zach Burchill is currently working on his Ph.D. in <b>Brain and Cognitive Science</b> at the University of Rochester.</p>
-
+<p>Andrew Burchill is currently working on his doctoral thesis in <b>Collective Animal Behavior</b> with Arizona State University's Social Insect Research Group.</p>
 <h2>My Jam:</h2>
-<p>I like solving problems, computational <em>anything</em>, and niche linguistics subfields.</p>
-<p>My research right now is focused on how listeners understand people who talk differently, how they get better at it, and how that struggle ultimately shapes language.</p>
+
+<style>
+label[for=extras-toggle] {
+  cursor: pointer;
+  }
+#extras-toggle {
+  display: none; 
+  }
+#extras {
+  transition-duration: .7s;
+  transition-property: font-size, opacity;
+  font-size: 0pt;
+  opacity: 0;
+  }
+#extras-toggle:not(:checked) ~ #extras {
+  font-size: 100%;
+  opacity: 1;
+  }  
+</style>
+
+<label for="extras-toggle">
+  <p><em>Ants.</em> Anything with ants. Evolution, physiology, but especially behavior. Also things that <em>aren't</em> ants but remind me of ants?  This includes swarm dynamics, decentralized optimization problems, and optimal foraging theory. <a>More?</a></p></label>
+<input id="extras-toggle" type="checkbox" checked />
+<p id="extras">My research right now is focused on how ant colonies do family meal-planning. Just a few workers do the "grocery shopping" for the <em>entire</em> 200+ member colony: how do they coordinate their foraging without language or any central authority? </p>
 
 <hr />
 
@@ -16,11 +37,42 @@
     <span class="fa fa-user fa-lg main-list-item-icon"></span>
     <a href="{{site.links.about_me}}">About Me</a>
   </li>
+
+
+<style>
+label[for=pubs-toggle] {
+  cursor: pointer;
+  }
+#pubs-toggle {
+  display: none; 
+  }
+#pubs {
+  transition-duration: .7s;
+  transition-property: font-size, opacity;
+  font-size: 0pt;
+  opacity: 0;
+  }
+#pubs-toggle:not(:checked) ~ #pubs {
+  font-size: 100%;
+  opacity: 1;
+  }  
+</style>
+
+
   <li class="main-list-item">
-    <span class="fa fa-flask fa-lg main-list-item-icon"></span>
-    <a href="{{site.links.publications}}">My Research</a>
+    <label for="pubs-toggle"> 
+	<span class="fa fa-flask fa-lg main-list-item-icon"></span>
+	<a>Publications</a> 
+    </label>
+    <input id="pubs-toggle" type="checkbox" checked />
+    <div id="pubs" class="eqi-container" style="margin: 0 25%">
+        <div><a href="{{site.links.pubs_orcid}}"><span class="ai ai-orcid ai-lg main-list-item-icon"></span></a></div> 
+        <div><a href="{{site.links.pubs_google}}"><span class="ai ai-google-scholar ai-lg main-list-item-icon"></span></a></div>
+	 <div><a href="{{site.links.pubs_researchgate}}"><span class="ai ai-researchgate ai-lg main-list-item-icon" ></span></a></div>
+    </div>  
   </li>
   <li class="main-list-item">
     <span class="fa fa-book fa-lg main-list-item-icon"></span>
-    <a href="{{site.links.cv}}">Publications & CV</a>
+    <a href="{{site.links.cv}}">CV</a>
+  </li>	  
 </ul>
