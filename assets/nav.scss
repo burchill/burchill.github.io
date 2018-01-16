@@ -3,30 +3,61 @@
 
 @import 'variables';
 
-/*** ********************************************************** ***/
-header.nav {
-	padding: 10px 0;
+
+.logo-container, .logo-container2 {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-content: center;
+    align-content: center;
 }
 
+
+.wrap {
+   text-align: center;
+}
+.nav {
+    display: inline-block;
+    margin: 0 auto;
+   
+}
+ 
+ /** mobile/base view, float center **/
 .nav-container {
-	margin: 0 auto;
-	padding: 0 20px;
+  margin: 0 auto 10px;
+  padding: 0 20px;
 }
-
-.nav-container > * {
-    vertical-align: middle;
+.nav-container2 {
+  margin: 0 auto;
+  padding: 0 20px;
 }
-
-nav {
+ 
+@media screen and (min-width: 700px) {
+  .nav-container2 {
+    margin: 0 auto;
+    float: right
+  }
+  .nav-container {
+    margin: 0 auto;
+    float: left;
+  }
+  .nav {
     display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+  nav.main-nav ul, .logo-container {
+    float: right;
+  }
 }
 
 nav.main-nav ul {
     margin: 0;
-    padding: 0;
+    padding: 1;
     list-style: none;
-    float: right;
     display: block;
+        
 }
 
 nav.main-nav li, nav.main-nav a {
@@ -39,23 +70,26 @@ nav.main-nav li {
 }
 
 nav.main-nav li a {
-    padding: 10px;
+    padding: 0px 10px 10px;
 }
 
-.nav-container h1 {
+.nav-container h1, .nav-container2 h1 {
     padding: 0;
     margin: 0;
 }
-.nav-container .logo-small {
+.nav-container .logo-small, .nav-container2 .logo-small {
     margin-right: 20;
+    
 }
-.nav-container h1, .nav-container div.logo-container {
+.nav-container h1, .nav-container div.logo-container, .nav-container2 h1, .nav-container2 div.logo-container {
     display: inline-block;
 }
-.nav-container h1 a {
+.nav-container h1 a, .nav-container2 h1 a {
     text-decoration: none;
-    color: $text-color;
+    color: $text-color
+    
 }
+
 
 
 
