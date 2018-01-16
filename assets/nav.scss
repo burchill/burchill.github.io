@@ -24,13 +24,9 @@
 }
  
  /** mobile/base view, float center **/
-.nav-container {
-  margin: 0 auto 10px;
-  padding: 0 20px;
-}
-.nav-container2 {
+.nav-container, .nav-container2 {
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 10 20px;
 }
  
 @media screen and (min-width: 700px) {
