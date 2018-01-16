@@ -47,7 +47,7 @@
     margin: 0 auto;
     text-align: center;
   }
-  nav.main-nav ul, .logo-container {
+  nav.main-nav ul, .logo-container-nav {
     float: right;
   }
 }
@@ -81,7 +81,7 @@ nav.main-nav li a {
     margin-right: 20;
     
 }
-.nav-container h1, .nav-container div.logo-container, .nav-container2 h1, .nav-container2 div.logo-container {
+.nav-container h1, .nav-container div.logo-container-nav, .nav-container2 h1, .nav-container2 div.logo-container-nav {
     display: inline-block;
 }
 .nav-container h1 a, .nav-container2 h1 a {
