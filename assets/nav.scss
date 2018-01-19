@@ -26,22 +26,24 @@
  /** mobile/base view, float center **/
 .nav-container, .nav-container2 {
   margin: 0 auto;
-  padding: 10 20px;
+  padding: 10 0px;
 }
  
 @media screen and (min-width: 700px) {
+  .nav-container, .nav-container2 {
+      margin: 0 auto;
+      padding: 10 0px;
+  }
   .nav-container2 {
-    margin: 0 auto;
-    float: right
+      float: right;
   }
   .nav-container {
-    margin: 0 auto;
-    float: left;
+      float: left;
   }
   .nav {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
+      display: block;
+      margin: 0 auto;
+      text-align: center;
   }
   nav.main-nav ul, .logo-container-nav {
     float: right;
@@ -74,7 +76,7 @@ nav.main-nav li a {
     margin: 0;
 }
 .nav-container .logo-small, .nav-container2 .logo-small {
-    margin-right: 20;
+    margin-right: 10;
     
 }
 .nav-container h1, .nav-container div.logo-container-nav, .nav-container2 h1, .nav-container2 div.logo-container-nav {
