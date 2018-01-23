@@ -1,35 +1,70 @@
 
+{% assign data_file = site.pages | where: "type", "burchilldata" | first %}
+{% if data_file %}
+	{% if site.sharing_option.post_author_left and page.layout == 'post' %}
+		{% assign first_author_name = data_file.cognomen[page.author] %}
+	{% else %}
+    	{% assign first_author_name = data_file.cognomen[site.compass.author] %}
+    {% endif %}
+    {% assign first_author_url = data_file.authorlinks[first_author_name] %}
+    {% assign first_author_css = data_file.authorstyles[first_author_name] %}
+    {% assign first_author_logo = data_file.logo_files[first_author_name] %}
+    {% assign first_author_basesite = data_file.base_sites[first_author_name] %}
+    {% assign first_author_blog = data_file.author_blogs[first_author_name] %}
+    
+    {% for burchill in data_file.burchills %}
+    	{% if burchill != first_author_name %}
+    		{% assign second_author_name = burchill %}
+    	{% endif %}
+    {% endfor %}
+    {% assign second_author_url = data_file.authorlinks[second_author_name] %}
+    {% assign second_author_css = data_file.authorstyles[second_author_name] %}
+    {% assign second_author_logo = data_file.logo_files[second_author_name] %}
+    {% assign second_author_basesite = data_file.base_sites[second_author_name] %}
+    {% assign second_author_blog = data_file.author_blogs[second_author_name] %}
+
 
 <div class="wrap">
-<header class="nav">
-<div class="nav-container">
-        <span class="logo-container-nav"><a class="logo-small" href=""{{site.links.home}} style="background-image: url('{{ site.baseurl }}{{ site.compass.logo }}')"></a> 
-              <h1><a href="{{site.links.home}}">{{ site.compass.author }}</a></h1></span>
-        <nav class="main-nav">
-          <ul>
-            <li><a href="{{site.links.home}}">Home</a></li>
-            <li><a href="{{site.links.blog}}">Blog</a></li>
-            <li><a href="{{site.links.about_me}}">About Me</a></li>
-          </ul>
-        </nav>
-      </div>
+	<header class="nav">
+		<div class="nav-container">
+        	
+   	    	<span class="logo-container-nav">
+   	    		<a class="logo-small" href="/" style="background-image: url('{{ first_author_basesite }}/{{ first_author_logo }}')"></a> <h1><a href="{{ first_author_basesite }}">{{ first_author_name }}</a></h1></span>
+       
+
+        	<nav class="main-nav">
+          		<ul>
+            		<li><a href="{{ first_author_basesite }}">Home</a></li>
+           			<li><a href="{{ first_author_blog }}">Blog</a></li>
+					<li><a href="{{ first_author_url }}">About Me</a></li>
+          		</ul>
+        	</nav>
+        
+      	</div>
+      
     </header>
 </div>
 
-<div class="wrap">
-<header class="nav">
-<div class="nav-container2">
-        <span class="logo-container-nav"><a class="logo-small" href=""{{site.links.home}} style="background-image: url('{{ site.baseurl }}{{ site.compass.logo }}')"></a> 
-              <h1><a href="{{site.links.home}}">{{ site.compass.author }}</a></h1></span>
-        <nav class="main-nav">
-          <ul>
-            <li><a href="{{site.links.home}}">Home</a></li>
-            <li><a href="{{site.links.blog}}">Blog</a></li>
-            <li><a href="{{site.links.about_me}}">About Me</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-</div>
+<div class="wrap" {% if page.permalink == site.links.about_me %} style="display:none;" {% endif %}>
+	<header class="nav">      
+		<div class="nav-container2">
+        
+        	<span class="logo-container-nav">
+        		<a class="logo-small" href="/" style="background-image: url('{{ second_author_basesite }}/{{ second_author_logo }}')"> </a> <h1><a href="{{ second_author_basesite }}">{{ second_author_name }}</a></h1></span>
 
+     	   <nav class="main-nav">
+          		<ul>
+            		<li><a href="{{ second_author_basesite }}">Home</a></li>
+           			<li><a href="{{ second_author_blog }}">Blog</a></li>
+					<li><a href="{{ second_author_url }}">About Me</a></li>
+          		</ul>
+        	</nav>
+		
+		</div>
+      
+	</header> 
+</div>
 <div style="height:10%"></div>
+{% else %}
+{% include old_nav_header.html %}
+{% endif %}
