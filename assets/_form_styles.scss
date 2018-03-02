@@ -1,5 +1,8 @@
-$lighter-shade: #f9f9f9
 
+
+$lighter-shade: #f9f9f9;
+$placeholder-alpha: 0.6;
+$label-relative-size: 1.1em;
 
 form {
   width: 100%;
@@ -11,8 +14,11 @@ form {
   max-width: calc(100vw - 40px);
   box-sizing: border-box;
   position: relative;
+  text-align: left;
 }	  
-form input, select {
+form input,  
+form select,
+form textarea {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -21,38 +27,46 @@ form input, select {
   border: 0;
   /*color: rgba(0,0,255,0.9);*/
   transition: all 0.3s;
-  border-bottom: 2px solid $lighter-shade;
+  border-bottom: 2px solid rgba($text-color,0.3)
 }
-form input:focus {
+form input:focus, form textarea:focus {
   border-bottom: 2px solid $text-color;
 }
 
-/* For changing the placeholder text */
-form input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: rgba($text-color,0.9);
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: rgba($text-color,0.9);
-}
-form input:-ms-input-placeholder { /* IE 10+ */
-  color: rgba($text-color,0.9);
-}
-form input:-moz-placeholder { /* Firefox 18- */
-  color: rgba($text-color,0.9);
+/* fixing various things */
+form input[type="radio"] {
+  width: auto;
 }
 
+
+
+/* For changing the placeholder text */
+form input::-webkit-input-placeholder, form textarea::-webkit-input-placeholder  { /* Chrome/Opera/Safari */
+  color: rgba($text-color,$placeholder-alpha);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: rgba($text-color,$placeholder-alpha);
+}
+form input:-ms-input-placeholder, form textarea:-ms-input-placeholder   { /* IE 10+ */
+  color: rgba($text-color,$placeholder-alpha);
+}
+form input:-moz-placeholder, form textarea:-moz-placeholder { /* Firefox 18- */
+  color: rgba($text-color,$placeholder-alpha);
+}
+/*
 form p:before {
   content: attr(type);
   display: block;
   margin: 28px 0 0;
 }
+*/
 form label {
-  font-size: 1.17em;
+  font-size: $label-relative-size;
   font-weight:bold;
 }
 
-form button {
-  float: right;
+form button, form input[type="button"] {
+  /*float: right;*/
   padding: 8px 12px;
   margin: 8px 0 0;
   border: 2px solid $text-color;
@@ -61,7 +75,7 @@ form button {
   cursor: pointer;
   transition: all 0.3s;
 }
-form button:hover {
+form button:hover, form input[type="button"]:hover {
   background: $text-color;
   color: #fff;
 }
@@ -78,5 +92,33 @@ form select {
     box-sizing: border-box; 
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box; 
-    margin-bottom: 30px;
+    margin-bottom: 12px;
 }
+form label+select {
+  margin-top: 12px;
+}
+
+
+/* This stuff is for showing the maps */
+.map_holder_holder {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+.map_holder_holder::before {
+	content: "";
+	display: block;
+	padding-top: 100%; 	/* initial ratio of 1:1*/
+}
+.map_holder {
+	position:  absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+
+
+
+
