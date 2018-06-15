@@ -10,8 +10,9 @@
         <span class="post-author"><a href="{{ post_author_url }}">{{ page.author }}</a></span> {% endif %}
         {{ content }}
       </div>
-
+	
       <div class="related">
+      <br /><hr> <br />
         <h2>Recent Posts</h2>
         <ul class="related-posts">
           {% for post in site.related_posts limit:3 %}
