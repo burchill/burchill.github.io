@@ -1,0 +1,61 @@
+---
+layout:  post
+title: "Things 'Science' Doesn't Know About But Should"
+comments:  true
+published:  false
+author: "Andrew Burchill"
+date: 2018-0-04 10:00:00
+permalink: /honey_pots/
+categories: [ants, myrmecology, science]
+output:
+  html_document:
+    mathjax:  default
+    fig_caption:  true
+---
+
+
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+
+```
+
+
+
+
+"camponotus inflatus" 66 results
+c i. in the last 50 years. 48
+  17 are about abos or food
+  2 are about the ant, both by conway
+  10 about ecology or taxonomy of "ants of australia!"
+  the rest are garbage
+  
+  
+  
+nigel_wakagetti ON INSTAGRAM, took the new mural shot
+
+
+
+It
+
+
+
+
+
+
+
+
+
+
+
+It was a nice evening, sitting around a fire under the stars with my new lab a few days after I started grad school. My girlfriend was visiting at the time, and I was gently teasing her about the way she pronounced the word "eggs" ("eygs").  
+
+No one batted an eye.
+
+It was then that she called me out for pronouncing "museum" as "myoo-zam."
+
+**All hell broke loose.**
+
+<!--more-->
