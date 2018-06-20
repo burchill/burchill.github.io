@@ -1,0 +1,308 @@
+---
+  layout:  post
+title: "Using Remote Clusters with R"
+comments:  true
+published:  true
+author: "Zach Burchill"
+date: 2018-06-13 10:00:00
+permalink: /remoteR2/
+  categories: ['remote computing',R,future,'R package','parallel computing',computing,cluster]
+output:
+  html_document:
+  mathjax:  default
+fig_caption:  true
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Set random seed so it doesn't keep redrawing the plots whenever I change anything
+set.seed(123)
+library(future)
+library(parallel)
+
+```
+
+```{r functions,warning=FALSE,message=FALSE,echo=FALSE}
+
+```
+
+```{r setup2, echo=FALSE, warning=FALSE,message=FALSE,}
+user_name <- "zburchil"
+server_name <- "cycle1.cs.rochester.edu"
+
+Sys.setenv(PATH=paste0(Sys.getenv('PATH'), ':/Applications/RStudio.app/Contents/MacOS/postback/'))
+
+Sys.setenv(SSH_ASKPASS='/usr/local/bin/ssh-askpass')
+
+# plan(remote, workers = paste0(user_name, "@", server_name))
+
+# plan(cluster, workers = c("zburchil@cycle1.cs.rochester.edu", "zburchil@cycle2.cs.rochester.edu"))
+
+# cl <- makeCluster(c("zburchil@cycle1.cs.rochester.edu", "zburchil@cycle2.cs.rochester.edu"))
+
+# cl <- snow::makeCluster(
+#   list(list(host="zburchil@cycle2.cs.rochester.edu",
+#          rscript = "/usr/lib64/R/bin/Rscript",
+#          snowlib = "/u/zburchil/R/x86_64-redhat-linux-gnu-library/3.4"),
+#     list(host="zburchil@cycle3.cs.rochester.edu",
+#          rscript = "/usr/lib64/R/bin/Rscript",
+#          snowlib = "/u/zburchil/R/x86_64-redhat-linux-gnu-library/3.4")),
+#   type="SOCK", outfile="",
+#   manual=TRUE)
+# 
+# 
+# cl <- snow::makeCluster(
+#   list(list(host="node33",
+#          rscript = "/usr/lib64/R/bin/Rscript",
+#          snowlib = "/u/zburchil/R/x86_64-redhat-linux-gnu-library/3.3")),
+#   type="SOCK")
+# 
+# cl <- parallel::makePSOCKcluster(
+#   c("zburchil@cycle1.cs.rochester.edu"),
+#   rscript="/usr/lib64/R/bin/Rscript")
+# 
+# 
+# cl <- parallel::makePSOCKcluster(
+#   c("node33"),
+#   rscript="/usr/lib64/R/bin/Rscript")
+
+```
+
+After reading [my earlier blog post about running asynchronous R calls on a remote server]({{ site.baseurl }}{% post_url 2018-06-12-remoteR %}), you probably got pumped at the idea of "nested futures", remote clusters, or my use of the marquee HTML tag.  Regardless of your excitement, it's time to find out how you can take your parallel processing game to the next level.
+
+This post is meant for two purposes: the first is to **document an example of using remote clusters with R**, and the second is to **serve as instructions/reference** for my lab members at Rochester.
+
+<!--more-->
+
+Our issue [last time]({{ site.baseurl }}{% post_url 2018-06-12-remoteR %}) was that we wanted to harness the power of the cluster, but could only connect to the cluster one a gateway/login node. But what if we set up a "remote" plan into the login/gateway to the cluster, and _inside that future_ we had it establish a future plan to the other nodes on the cluster?  What if we basically just "nested" these futures?
+
+Turns out, yup, we can totally do that. But before we do, let's make sure that we can actually use the other nodes in the cluster. This next section is primarily for my **@Labmates**, but could be useful for others using similar clusters.
+
+## Cluster set up
+
+**@Labmates:** log in to the cluster through "cycle1.cs.rochester.edu" or however you've been doing it. There are a bunch of "nodes" in this cluster you can get to now that you're in. You can connect to them once you're in by doing `ssh node<N>` where `<N>` is the number of the node you want to connect to. I think *theoretically* it's any number between 33 and 64, but in practice it seems like it's a random subset of that[^1].  If you try to connect and it just hangs for a while, you probably won't be able to connect and should just try a different node. When you find one that will actually work it should say something like:
+  
+  ```
+The authenticity of host 'node61 (XXX.XXX.XX.XXX)' can't be established.
+ECDSA key fingerprint is SHA256:<random_string>.
+ECDSA key fingerprint is MD5:<lots_of_hexadecimals_separated_by_colons>.
+Are you sure you want to continue connecting (yes/no)? 
+```
+
+Type in "yes" and it should say: `Warning: Permanently added 'node61,XXX.XXX.XX.XX' (ECDSA) to the list of known hosts.`. You'll probably need to add all the nodes you'll be using to that list of known hosts. After a few times of doing this, you'll start getting annoyed about having to enter your password each time[^2]. So let's change that.
+
+### SSH key authentication
+
+**@Labmates:** I have to admit, you also might be able to use `ssh-askpass` in such a way that you don't need to type your password each time you log in to the remote server. In my original troubleshooting, I removed my ability to log in without a password prompt, and I never went back and tried to see if I could get both working at the same time. I had followed the directions [here](http://people.seas.harvard.edu/~nater/tutorials/MacSSHKeyAuth.html).  We'll be doing something similar, but for connections *between* the nodes of the cluster.
+
+The way the cluster works means that your home directory is the same across all nodes--change something on one node and it changes it on all of them. So loosely following the [directions (but for Linux)](http://people.seas.harvard.edu/~nater/tutorials/MacSSHKeyAuth.html), we'll do the following to establish a directory for our SSH keys (after logging in to any node on the cluster):
+  
+  ```
+mkdir ~/.ssh
+cd ~.ssh/
+  chmod 0700 ~/.ssh
+```
+
+Generate new keys as you did before (`ssh-keygen -t rsa -b 2048`) and give it the default name. Now, since all the nodes will share the same `~/.ssh` files, just copy the public key and name it "authorized_keys" (i.e., `cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys`). You should now be able to `ssh` between nodes without having to retype your password.
+
+Now that we got that out of the way, we need to (sadly) make sure each node has the R packages we need. (Fortunately) that's not quite as tedious as it sounds
+
+### Getting the R environments set up
+
+In order to use R packages on the cluster, you need to make sure they're installed on all the computers and nodes you'll be using. Go ahead and install at _least_ `future`, `parallel`, and `listenv`.
+
+
+**@Labmates:** Until sometime in August, the nodes in the cluster won't have all the R packages we want. So until then, you'll have to install the packages you need on each node. `install.packages()` should put them in your home directory, which is great because it means you won't have to do it individually for each node. _**However**_ not all nodes run the same version of R (3.3.0--3.4.4) I think, and many packages (maybe all?) don't work across 3.3.x and 3.4.x, so you'll have to install it at least twice. When you `ssh` into a node, run R and see what version it is (it should tell you on start-up), and make sure you install all the packages on one running 3.3.x and one running 3.4.x.
+
+Now, let's get back to the good stuff.
+
+## Nested futures (or "future topologies")
+
+Yes, you can embed futures in other futures.  Check out [this vignette for an intro and simple demonstration](https://cran.r-project.org/web/packages/future/vignettes/future-3-topologies.html). Specifically, check out the section entitled "Example: A remote compute cluster," which fits our situation almost perfectly[^3].
+
+### Proof-of-concept demonstration
+
+Let's go over a simple demonstration of my own making first:
+  
+  ```{r echo=TRUE, eval=FALSE}
+library(future)
+library(parallel)
+
+# Remember to use these!
+Sys.setenv(PATH=paste0(Sys.getenv('PATH'), ':/Applications/RStudio.app/Contents/MacOS/postback/'))
+Sys.setenv(SSH_ASKPASS='/usr/local/bin/ssh-askpass')
+
+# Establish a remote persistent connection with a login node
+plan(remote, workers = c("zburchil@cycle2.cs.rochester.edu"))
+
+# Make `x` a future with the plan being the login node
+x %<-% {
+  # Since this is being run "in" the cluster, you can now use the
+  #   "cluster" plan on the other nodes
+  plan(cluster, 
+       # Since your username is the same within the cluster, you 
+       #    don't need to specify it
+       workers=c("node33", "node34")
+  )
+  # `future::future_lapply` is actually deprecated in favor of 
+  #   `future.apply::future_lapply`, but I'm not going to have 
+  #   you install another package for a quick demo.
+  # This basically gets the hostname of the computer being used 
+  #   4 times using whatever `plan` you set
+  xx <- future::future_lapply(1:4, function(x) {  Sys.info()[["nodename"]] })
+  xx 
+}
+
+# Check to see if x has its values yet
+resolved(futureOf(x))
+```
+
+```{r echo=FALSE}
+TRUE
+```
+
+```{r eval=FALSE,echo=TRUE}
+x
+```
+
+```{r echo=FALSE}
+list("node33.cs.rochester.edu", "node33.cs.rochester.edu",
+     "node34.cs.rochester.edu", "node34.cs.rochester.edu") 
+```
+
+
+If the execution hangs, it's probably due to some difficulty connecting to the nodes/gateway. Make sure you can connect to the nodes you're using via `ssh` if something goes wrong.
+
+### Important note
+
+I don't claim to 100% understand most of how `future` works yet, but note that you don't need to explicitly load the libraries and define the functions you're using in the global environment in the nested futures.
+
+For example, I tried loading and `purrr` in the global environment and put `map(xx, ~paste0(., "!"))` at the end of the future and when it ran on the remote node it knew to use `purrr::map`. I'm guessing this won't work if the package isn't installed on the remote nodes, but you can try that out yourself.
+
+### `future`'s built-in method
+
+But the creator of `future` (Henrik Bengtsson) has already anticipated situations similar to ours. `future` can let you embed "plans"" within plans from the master computer. This example is adapted from [one of his](https://cran.r-project.org/web/packages/future/vignettes/future-3-topologies.html)[^4]. 
+
+This "future topology" makes use of _three_ layers---the remote connection to the login node, the cluster connection to the cluster nodes, and a "multiprocess" plan that lets you use the multiple cores on each cluster in parallel. From this example it seems that giving `plan()` a list of strategies will be interpreted as a nested series of future strategies.
+
+```{r echo=TRUE, eval=FALSE}
+
+library("future")
+library("listenv")
+
+Sys.setenv(PATH=paste0(Sys.getenv('PATH'), ':/Applications/RStudio.app/Contents/MacOS/postback/'))
+Sys.setenv(SSH_ASKPASS='/usr/local/bin/ssh-askpass')
+
+
+# Set up access to remote login node
+#   "tweak" is basically a way of saving a set of specific arguments to `plan`
+login <- tweak(remote, workers = "zburchil@cycle1.cs.rochester.edu")
+
+# Specify future topology
+# login node -> { cluster nodes } -> { multiple cores }
+plan(list(
+login,
+tweak(cluster, workers = c("node33", "node34")),
+# the 'multiprocess' plan uses a machine's cores for parallel processing 
+multiprocess
+))
+
+# This is Henrik's example. It's not the way that I would 
+#   have thought to do it (I've never used `listenv`), but 
+#   it makes sense if you think about how futures
+#   would need to be called in parallel.
+
+# (a) This will be evaluated on the cluster login computer
+x %<-% {
+# Gets the login node's hostname
+thost <- Sys.info()[["nodename"]]
+# Gets the process id of what's running on the login none
+tpid <- Sys.getpid()
+# `listenv` basically makes a mini-environment that's a 
+#   little like a list.  I'm interpreting its use here to 
+#   be something that you can assign multiple futures to 
+#   without needing to check their values until you do 
+#   the `Reduce()` at the end.
+y <- listenv()
+for (task in 1:4) {
+# (b) This will be evaluated on a compute node on the cluster
+y[[task]] %<-% {
+# Gets the cluster node's hostname
+mhost <- Sys.info()[["nodename"]]
+# Gets the process id running on the cluster node
+mpid <- Sys.getpid()
+z <- listenv()
+for (jj in 1:2) {
+# (c) These will be evaluated in separate processes 
+#   on the same compute node
+z[[jj]] %<-% data.frame(task = task,
+top.host = thost, top.pid = tpid,
+mid.host = mhost, mid.pid = mpid,
+host = Sys.info()[["nodename"]],
+pid = Sys.getpid())
+}
+Reduce(rbind, z)
+}
+}
+Reduce(rbind, y)
+}
+
+print(x)
+
+```
+
+```{r, echo=FALSE}
+
+# using `dput(x)`
+
+p2 <- structure(list(task = c(1L, 1L, 2L, 2L, 3L, 3L, 4L, 4L), top.host = structure(c(1L, 
+1L, 1L, 1L, 1L, 1L, 1L, 1L), .Label = "cycle1.cs.rochester.edu", class = "factor"), 
+top.pid = c(9156L, 9156L, 9156L, 9156L, 9156L, 9156L, 9156L, 
+9156L), mid.host = structure(c(1L, 1L, 2L, 2L, 1L, 1L, 1L, 
+1L), .Label = c("node33.cs.rochester.edu", "node34.cs.rochester.edu"
+), class = "factor"), mid.pid = c(3422L, 3422L, 16543L, 16543L, 
+3422L, 3422L, 3422L, 3422L), host = structure(c(1L, 1L, 2L, 
+2L, 1L, 1L, 1L, 1L), .Label = c("node33.cs.rochester.edu", 
+"node34.cs.rochester.edu"), class = "factor"), pid = c(3468L, 
+3469L, 16586L, 16588L, 3470L, 3471L, 3472L, 3474L)), .Names = c("task", 
+"top.host", "top.pid", "mid.host", "mid.pid", "host", "pid"), row.names = c(NA, 
+-8L), class = "data.frame")
+
+print(p2)
+```
+
+
+So that's it! You need to be careful about how you're coding these futures given their asynchronicity and how `future()` works though. You can use `listenv()`s like Henrik does here, or you can use packages and functions that take care of that stuff for you, such [`future.apply`](https://cran.r-project.org/web/packages/future.apply/index.html).  `future` also plays nice with a bunch of other packages, and Henrik has [a super helpful blog post about how to connect them](https://www.jottr.org/2017/06/05/many-faced-future/).
+
+
+## To note
+
+Here's what you should know setting out on your own:
+
+* Having crappy internet access will totally screw everything up. Also, nodes will sometimes be "busy" and will also screw things up. In my experience, things can be pretty finicky---a lot of times different calls will just hang until you lose your mind. Try connecting manually to nodes to see if the connection is the problem or not.
+
+* Be careful about writing code that deals with multiple asynchronous calls. Making easily distributable code that won't run into bottlenecks is probably not going to feel natural at first, but double check your flow to make sure everything makes sense conceptually.
+
+* Be careful about how packages and locally-defined functions are used across nodes. There are a bunch of situations I could imagine where finicky, hard-to-detect errors might arise, but I don't have a firm enough grasp of `future` to say one way or the other. Just make sure you know what you don't know going in!
+
+* Likewise, you can probably avoid a lot of the headache with [Henrik's suggestions about how to parallelize `future` code](https://www.jottr.org/2017/06/05/many-faced-future/)
+
+* **@Labmates:** when you find something super useful, share it on Slack! **@EveryoneElse:** If _you_ find out a super useful trick be sure to share it too! Try tweeting about it with the hastag [#rstats](https://twitter.com/hashtag/rstats). There's a lot of under-utilized functionality out there and the R community is super-appreciative of learning more[^5]!
+
+* **@Labmates:** I note that `resolved(x)` does not really function as a good check to see if `x` is resolved. Doing this will just wait until `x` _is_ resolved, and then always output `TRUE`. To check if a future is resolved, you need to do: `resolved(futureOf(x))`.
+
+<hr />
+<br />
+
+### Footnotes
+
+[^1]: I think it might be that when nodes are *particularly* busy, it just takes too long to establish a connection. But I don't really know. I'm talking with people about why this is.
+
+[^2]: Especially if it's 24+ characters long, like I foolishly made mine.
+
+[^3]: I find more often than not that I only find a good answer online after I've basically solved the problem. I put at least an hour or two of effort into getting a proof-of-concept remote cluster working with the login nodes only to come to the conclusion that it was pretty infeasible due to pretty esoteric/undocumented socket reasons. The remote computers being used as clusters (via `plan(cluster, ...)`) need to be able to open connections back to the master computer, which is super simple when that "master" is already _on_ the cluster, but not when it's my local computer. This differs from the remote connection of `plan(remote, ...)` in that the non-cluster remote connection is "persistent".
+
+[^4]: Running his code OOTB didn't actually work for me. Notice that his example gets the node cluster explicitly with `parallel::makeCluster()` _before_ starting the future topology. When I try this, I get: `Error in summary.connection(con) : invalid connection`, which I believes comes from `parallel`. Instead, I just use `future`'s default clustering method, and just call the worker names in the `tweak`.
+
+[^5]: I literally got 400+ likes and spawned a number of super-interesting threads just for [recommending a single function](https://twitter.com/zachburchill/status/997240069885964294). These people are _thirsty_ (for knowledge).
