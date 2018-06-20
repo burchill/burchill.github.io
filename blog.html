@@ -1,13 +1,16 @@
 ---
 layout: page
-title: Blog
+title: The Burchill Blog
 author: Andrew
 permalink: /blog/
 ---
 <div class="blog_head_container">
-<h2>Recent posts:</h2>
+<h2 style="text-align:center">A (somewhat) shared blog between two brothers</h2>
+<br />
+<h2>Recent posts by Andrew:</h2>
+{% assign recent_andrew_posts = site.posts | where_exp:"post", "post.author contains 'Andrew'" %}
 <ul>
-  {% for post in site.posts limit:3 %}
+  {% for post in recent_andrew_posts limit:4 %}
   <li>
     <h3>
       <a href="{{ post.url }}">
@@ -19,25 +22,28 @@ permalink: /blog/
   {% endfor %}
 </ul>
 
-<h2><a href="{{site.baseurl}}/archive.html">[Archive]</a></h2>
+<!-- <h2><a href="{{site.baseurl}}/archive.html">[Archive]</a></h2> -->
   
 </div>
 
 <hr />
 
 <div class="posts">
-  {% for post in site.posts limit:site.homepostlimit %}
+  {% for post in site.posts %}
   <div class="post">
     <h1 class="post-title">
       <a href="{{ post.url }}">
         {{ post.title }}
       </a>
     </h1>
-    <span class="post-date">{{ post.date | date_to_string }}</span> 
+    <span class="post-date">{{ post.date | date_to_string }}</span> &mdash; <a class="commentcount" style="margin:0;display:inline" href="{{ post.url }}">{{ post.author }}</a>
+    {% comment %}
+    <!--Eh, not really worth including if I don't have people commenting -->
     {% if site.disqus %}
       &mdash;  <a href="{{ post.url }}#disqus_thread"
                               class = "commentcount" style="margin:0;display:inline"></a>
     {% endif %}
+    {% endcomment %}
     {{ post.excerpt }}
     <p style="margin-top:0; text-align: right;display: block;font-weight: bold"><a href="{{ post.url }}">&#8618; [Read more...]</a></p>
   </div>
