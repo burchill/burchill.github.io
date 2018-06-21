@@ -24,7 +24,8 @@ sass:
 # compass configuration
 compass:
   # an avatar or logo (optional)
-  logo: "/images/pawpaw.png"
+  logo: "/images/ant.png"
+  og_logo: "/images/open_graph_ant.png"
   # author will appear under the avatar (optional)
   author: "Andrew Burchill"
   # tagline will appear under the title (optional)
@@ -75,6 +76,9 @@ links:
 
 # Other stuff
 facepic: /images/andrewmacho.jpg
+
+# Blog post static image directory
+static_blog_pics_dir: /_posts/figures/static_files/    
                                 
 
 # set limit on number of post to appear on Home page
