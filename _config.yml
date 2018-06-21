@@ -15,7 +15,7 @@ include: ["_posts"]
 #ANDREW ADDED
 
 # general configuration
-url: http://andburch.github.io
+url: https://andburch.github.io
 baseurl: ''
 
 sass:
