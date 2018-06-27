@@ -1,0 +1,58 @@
+---
+layout:  post
+title: "Charisma in Ants"
+comments:  true
+published:  true
+author: "Andrew Burchill"
+date: 2018-06-27 10:00:00
+permalink: /honeys/
+  categories: [ants,'honeypot ants',honeypots,Australia]
+output:
+  html_document:
+  mathjax:  default
+fig_caption:  true
+---
+  
+
+Think of the most popular animal you know. Most of us will imagine pandas, elephants, dolphins, maybe bald eagles. These are the names kids shout out when asked about their favorites; these animals are considered “charismatic.” We paint pictures of them, we write songs about them, we use them as symbols, and we include them in metaphors.
+
+Now think of the most charismatic _ant_ you’ve heard of.
+
+<!--more-->
+
+Ooof. Chances are, you don’t have a long list. If you live in the southeastern United States, you might think of fire ants? Eh, but pure hatred isn’t really quite the same thing as charisma. 
+
+If you’ve been to the Neotropics, you might volunteer the leafcutter ants. Sinuous ribbons of leaves parading through the rainforest is an awe-inspiring sight. Although they are confined to Central and South America and despised by certain ranchers, leafcutters are certainly contenders for the title.
+
+![Leafcutter ants returning with leaves](https://upload.wikimedia.org/wikipedia/commons/0/01/Leafcutter_ants_transporting_leaves.jpg){:width="400px"}
+<p class = "figcaption">Honestly, leafcutters look cooler in person. (Taken from Wikipedia)</p>
+
+
+If you’re one of the 59 residents of [Poochera, Australia](https://en.wikipedia.org/wiki/Poochera,_South_Australia), I can guarantee you’re thinking of the dinosaur ant or [_Nothomyrmecia macrops_](https://en.wikipedia.org/wiki/Nothomyrmecia). For the rest of you, Poochera is probably the only town in the world thriving on ant-tourism. The town dedicated a giant statue to _Nothomyrmecia macrops_, the streets sport signage and plaques[^1], all of the town’s (presumably few) lamp posts are [painted with illustrations of the ant](https://antvisions.wordpress.com/2012/11/30/the-ant-town-poochera/). 
+
+![Giant statue of an ant in Poochera](https://upload.wikimedia.org/wikipedia/commons/a/a9/The_Big_Ant.JPG){:width="400px"}
+<p class = "figcaption">Apparently this statue is referred to as "The Big Ant." Australians certainly have a way with words[^2]. (Taken from Wikipedia)</p>
+
+
+One town of crazy Poocherans(?) aside[^1] though, ants are not usually depicted in public art. However, there is one ant that features prominently in murals and has gained global cultural acknowledgment.
+The honeypot ant has probably brought more human happiness into this world than any other ant. Let’s break it down: they’re ants (\*heads nod in interest\*), they live underground (\*brows furrow behind steepled fingers\*), . . . and some of them are full of honey (\*imagined auditorium erupts into frenzied cheering\*). Honestly, that’s about it. Among ants, having an ass full of honey is all it takes to gain global recognition. 
+
+This small series of posts will be a homage to the charismatic honeypot ants: what we know about them and what we don’t. (Hint: there’s a lot more of the latter.) Mainly, this particular post is just to serve as an introduction, a brief landing page for the rest of the series, and a means of getting my twin brother off my back.
+
+
+### Footnotes
+
+[^1]: 
+![Signage about the ant in Poochera](https://upload.wikimedia.org/wikipedia/commons/a/a9/The_Big_Ant.JPG){:height="400px"}
+<p class = "figcaption"> If you could live in a town that uses Title Case so extensively and not gouge your eyes out, I think we can safely say you have a problem.</p>
+
+
+[^2]:
+![A "scribbly"" gum tree]({{ site.url }}/_posts/figures/static_files/honeys/scribbly.jpg){:width="400px"}
+<p class = "figcaption">A picture I took of a "scribbly" gum tree. I mean, yeah, I guess I get it, okay? </p>
+
+
+
+
+
+
