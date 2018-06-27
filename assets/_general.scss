@@ -6,7 +6,9 @@
 @import 'form_styles';
 
 /*** THINGS ANDREW ADDED ***/
-
+.myclass + p {
+	display: none;
+}
 
 /*** THINGS ANDREW ADDED ***/
 
