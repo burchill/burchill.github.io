@@ -136,9 +136,6 @@ since it must be aligned with the content */
   user-select: all;          /* Likely future */   
 }
 
-
-
-
 /******/
 hr {
 	border: 0;
@@ -167,4 +164,62 @@ footer {
 html {
     line-height: 1.5;
 }
+
+/***-------------------------- For the NSFW images -------------------------***/
+
+/*** To use like such:
+<p class="nsfw">
+	<img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Banshu_01.jpg" style="width: 400px" />
+	<span class="nsfwLabel">NOT SAFE FOR LIFE</span>
+</p>
+***/
+
+p.nsfw {
+  position: relative;
+}
+
+.nsfw span.nsfwLabel {
+  background: rgb(0, 0, 0); /* fallback */
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: sans-serif;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+.nsfw img:hover + span.nsfwLabel {
+  display: none;
+}
+
+/* for browsers without blur */
+.nsfw img {
+  opacity: 0;
+}
+.nsfw img:hover {
+  opacity: 1;
+}
+
+/* If filter: blur(); is supported: */
+@supports ((filter: blur(10px)) or (-webkit-filter: blur(10px))) {
+  .nsfw img {
+    -webkit-filter: blur(30px); /* Safari 6.0 - 9.0 */
+    filter: blur(30px);
+    opacity: 1;
+  }
+  .nsfw img:hover {
+    -webkit-filter: blur(0px); /* Safari 6.0 - 9.0 */
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+
+
+
+
 
