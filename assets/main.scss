@@ -127,3 +127,13 @@ body {
 	}
 	*/
 }
+
+@media (min-width: calc(#{$big-media-width} + 100px)) {
+    aside.right {
+      margin-right: -50px;
+    }
+    aside.left {
+      margin-left: -50px;
+    }
+
+}
