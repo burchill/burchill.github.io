@@ -29,6 +29,14 @@ img {
 div.posts div.footnotes {
 	display: none;
 }
+/*** To prevent the nav bar from pushing around the title text ***/
+div.post {
+    padding-top: 1px;
+}
+
+
+
+
 
 
 
@@ -87,4 +95,3 @@ body {
 	}
 	*/
 }
-
