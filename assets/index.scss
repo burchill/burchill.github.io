@@ -1,5 +1,7 @@
 ---
 ---
+@import 'variables';
+
 
 /*** wrapper div for both header and main ***/
 .wrapper {
@@ -8,20 +10,20 @@
 
 /*** media queries ***/
 /* X-Small devices (phones, 480px and up) */
-@media (min-width: 480px) {
+@media (min-width: $small-media-width) {
 	/* wrapper stays 480px wide past 480px wide and is kept centered */
 	.wrapper {
-		width: 480px;
+		width: $small-wrapper-width;
 		margin: 7% auto 0 auto;
 	}
 }
 
 /* All other devices (768px and up) */
-@media (min-width: 768px) {
+@media (min-width: $big-media-width) {
 	/* past 768px the layout is changed and the wrapper has a fixed width of 680px
 	to accomodate both the header column and the content column */
 	.wrapper {
-		width: 680px;
+		width: $big-index-wrapper-width;
 	}
 
 	/* the header column stays left and has a dynamic width with all contents

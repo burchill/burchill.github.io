@@ -1,5 +1,8 @@
 ---
 ---
+
+@import 'variables';
+
 .post-title {
 	margin-bottom: 0;
 	text-align: left;
@@ -42,22 +45,23 @@ body {
 	padding: 0 20px;
 }
 
+
 /*** media queries ***/
 /* X-Small devices (phones, 480px and up) */
-@media (min-width: 480px) {
+@media (min-width: $small-media-width) {
 	/* wrapper stays 480px wide past 480px wide and is kept centered */
 	.wrapper {
-		width: 480px;
+		width: $small-wrapper-width;
 		margin: 5% auto 0 auto;
 	}
 }
 
 /* All other devices (768px and up) */
-@media (min-width: 768px) {
-	/* past 768px the layout is changed and the wrapper has a fixed width of 680px
+@media (min-width: $big-media-width) {
+	/* past 768px the layout is changed and the wrapper has a fixed width of 700px
 	to accomodate both the header column and the content column */
 	.wrapper {
-		width: 700px;
+		width: $big-wrapper-width;
 	}
 
 	/* the header column stays left and has a dynamic width with all contents
