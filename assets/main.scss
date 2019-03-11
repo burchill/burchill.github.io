@@ -1,5 +1,8 @@
 ---
 ---
+
+@import 'variables';
+
 .post-title {
 	margin-bottom: 0;
 	text-align: left;
@@ -26,7 +29,48 @@ img {
 div.posts div.footnotes {
 	display: none;
 }
+/*** To prevent the nav bar from pushing around the title text ***/
+div.post {
+    padding-top: 1px;
+}
 
+
+/*** Experimenting with floating asides ***/
+aside {
+  text-align: left;
+  width: 30%; /*** User can change this! ***/
+  background: rgba(255,255,255,0.4);
+  display: block;
+  padding: 0px 15px 0px 15px;
+  border: 3px solid $text-color;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+aside.right {
+  float: right;
+  margin-left: 20px
+}
+
+aside.left {
+  float: left;
+  margin-right: 20px
+}
+
+aside p:first-child {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+aside p:first-child::after {
+ display: block;
+   content: '';
+  width: 100%;
+  height: 1px;
+  background: $text-color;
+  bottom: 0;
+  left: 0;
+}
 
 
 
@@ -42,22 +86,23 @@ body {
 	padding: 0 20px;
 }
 
+
 /*** media queries ***/
 /* X-Small devices (phones, 480px and up) */
-@media (min-width: 480px) {
+@media (min-width: $small-media-width) {
 	/* wrapper stays 480px wide past 480px wide and is kept centered */
 	.wrapper {
-		width: 480px;
+		width: $small-wrapper-width;
 		margin: 5% auto 0 auto;
 	}
 }
 
 /* All other devices (768px and up) */
-@media (min-width: 768px) {
-	/* past 768px the layout is changed and the wrapper has a fixed width of 680px
+@media (min-width: $big-media-width) {
+	/* past 768px the layout is changed and the wrapper has a fixed width of 700px
 	to accomodate both the header column and the content column */
 	.wrapper {
-		width: 700px;
+		width: $big-wrapper-width;
 	}
 
 	/* the header column stays left and has a dynamic width with all contents
@@ -84,3 +129,12 @@ body {
 	*/
 }
 
+@media (min-width: calc(#{$big-media-width} + 100px)) {
+    aside.right {
+      margin-right: -50px;
+    }
+    aside.left {
+      margin-left: -50px;
+    }
+
+}
