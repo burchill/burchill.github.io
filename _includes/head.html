@@ -42,6 +42,13 @@
     {% assign reg_author = site.compass.author %}
   {% endif %}
   
+  {% comment %} If the post has a different author URL, that URL should be canonical {% endcomment %}
+  {% if post_author_url %}
+    <link rel="canonical" href="{{ post_author_url }}{{ page.url }}">
+  {% else %}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  {% endif %}
+  
   {% if page.title %}
     <title>{{ page.title | strip_html }} &#8226; {{ reg_author }}</title>
   {% else %}
@@ -69,7 +76,6 @@
 	  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
 
-  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <meta name="author" content="{{ reg_author }}">
 
   {% if page.url == "/" %}
