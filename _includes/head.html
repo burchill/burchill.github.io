@@ -25,6 +25,7 @@
   {% if data_file and page.author and data_file.cognomen[page.author] %}
     {% assign post_author_name = data_file.cognomen[page.author] %}
     {% assign post_author_url = data_file.authorlinks[post_author_name] %}
+    {% assign post_author_baseurl = data_file.base_sites[post_author_name] %}
     {% assign post_author_css = data_file.authorstyles[post_author_name] %}
     {% if post_author_css %}
       <link rel="stylesheet" href="{{ site.baseurl }}/assets/{{ post_author_css }}">
@@ -44,7 +45,7 @@
   
   {% comment %} If the post has a different author URL, that URL should be canonical {% endcomment %}
   {% if post_author_url %}
-    <link rel="canonical" href="{{ post_author_url }}{{ page.url }}">
+    <link rel="canonical" href="{{ post_author_baseurl }}{{ page.url }}">
   {% else %}
     <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   {% endif %}
